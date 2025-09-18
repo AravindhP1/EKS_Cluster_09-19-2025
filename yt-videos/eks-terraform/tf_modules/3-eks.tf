@@ -58,13 +58,13 @@ eks_managed_node_groups = {
     }
 }
 
-fargate_profiles = {
-    profile1 = {
-    selectors = [
-        {
-        namespace = "kube-system"
-    }
-    ]
-    }
-}
+#fargate_profiles = {
+#    profile1 = {
+#    selectors = [
+#        {
+#        namespace = "kube-system"
+#    }
+#    ]
+#    }
+#}
 }
