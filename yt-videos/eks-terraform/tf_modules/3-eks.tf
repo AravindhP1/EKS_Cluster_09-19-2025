@@ -11,7 +11,7 @@ create_iam_role = true # Default is true
 attach_cluster_encryption_policy = false  # Default is true
 
 cluster_endpoint_private_access = true
-cluster_endpoint_public_access = true
+cluster_endpoint_public_access = false
 
 control_plane_subnet_ids = concat(module.eks-vpc.public_subnets, module.eks-vpc.private_subnets)
 
@@ -37,6 +37,25 @@ kms_key_enable_default_policy = false
 enable_irsa = false 
 cluster_encryption_config = {}
 enable_auto_mode_custom_tags = false
+
+# Addons go here 
+  cluster_addons = {
+    coredns = {
+      resolve_conflicts = "OVERWRITE"
+    }
+    kube-proxy = {
+      resolve_conflicts = "OVERWRITE"
+    }
+    vpc-cni = {
+      resolve_conflicts = "OVERWRITE"
+      configuration_values = jsonencode({
+        env = {
+          ENABLE_PREFIX_DELEGATION = "true"
+          WARM_PREFIX_TARGET       = "1"
+        }
+      })
+    }
+  }
 
 # EKS Managed Node Group(s)
 create_node_security_group = true
