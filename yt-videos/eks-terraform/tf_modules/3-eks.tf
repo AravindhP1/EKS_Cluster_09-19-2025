@@ -20,7 +20,7 @@ cluster_security_group_description = "EKS cluster security group"
 
 bootstrap_self_managed_addons = true
 
-authentication_mode = "API"
+authentication_mode = "API_AND_CONFIG_MAP"
 enable_cluster_creator_admin_permissions = true
 
 dataplane_wait_duration = "40s"
